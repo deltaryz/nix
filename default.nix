@@ -1,5 +1,12 @@
 { config, pkgs, lib, ... }:
 
+let
+  src = builtins.fetchurl { url = https://www.warmplace.ru/soft/sunvox/sunvox-1.9.5d.zip; };
+  sunvox = pkgs.sunvox.overrideAttrs (old: rec {
+    version = "1.9.5d";
+    inherit src;
+  });
+in
 {
   imports =
     [ 
@@ -13,6 +20,7 @@
 
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
+  networking.networkmanager.packages = [ pkgs.networkmanager_openvpn ];
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -71,6 +79,7 @@
     #wine
     #winetricks
     unzip
+    sunvox
   ];
 
   # virtualbox and docker
