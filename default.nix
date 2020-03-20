@@ -35,9 +35,13 @@ in
 
   hardware.bluetooth.enable = true;
   # allow headsets
+  
   hardware.pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull;
+    daemon.config = {
+      resample-method = "speex-float-10";
+    };
   };
 
   # Select internationalisation properties.
