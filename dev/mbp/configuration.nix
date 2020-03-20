@@ -21,6 +21,7 @@ in
   [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../default.nix
+    ../../local.nix
   ];
 
   # Remap keyboard
