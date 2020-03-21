@@ -74,7 +74,7 @@
         ifconfig ${device} | grep 'inet ' | awk '{print $2}'
       '';
       "bin/getip".executable = true;
-      ".ssh".source = "./secret";
+      ".ssh".source = ./secret;
     };
   };
 
