@@ -24,6 +24,7 @@
     vim
     git
     git-secret
+    gnupg
     emacs
     rsync
     tmux
@@ -73,6 +74,7 @@
         ifconfig ${device} | grep 'inet ' | awk '{print $2}'
       '';
       "bin/getip".executable = true;
+      ".ssh".source = "./secret";
     };
   };
 
@@ -94,6 +96,9 @@
         tmux -u attach || tmux -u new
       end
     end
+
+    # make sure our key file exists
+    gpg --import ~/.ssh/private-key.gpg
 
     # install fisher
     if not functions -q fisher
