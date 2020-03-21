@@ -9,6 +9,11 @@ let
   });
 in
 {
+  environment.interactiveShellInit =
+  ''
+    export USE_TMUX=true
+  '';
+
   boot.loader.grub.useOSProber = true;
 
   networking.networkmanager.enable = true;
@@ -40,7 +45,7 @@ in
   virtualisation.virtualbox.host.enableExtensionPack = true;
 
   fonts.fonts = with pkgs; [
-    noto-fonts noto-fonts-emoji liberation_ttf fira-code fira-code-symbols corefonts roboto roboto-mono terminus_font
+    powerline-fonts noto-fonts noto-fonts-emoji liberation_ttf fira-code fira-code-symbols corefonts roboto roboto-mono terminus_font
   ];
 
   # this makes steam actually work
@@ -55,4 +60,5 @@ in
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+
 }

@@ -22,11 +22,12 @@
     wget
     vim
     git
+    git-secret
     emacs
     rsync
     tmux
     openssh
-    zsh
+    fish
     curl
     abduco
     mosh
@@ -50,11 +51,10 @@
   users.users.delta = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     password = "password"; # don't forget to change this!
   };
 
-  
   home-manager.users.delta = {
     programs.git = {
       enable = true;
@@ -67,7 +67,52 @@
       ".tmux".source = ./dotfiles/tmux;
       ".vimrc".source = ./dotfiles/vimrc;
       "bin/getip".source = ./dotfiles/getip;
+    };
   };
+
+  programs.fish.enable = true;
+  programs.fish.interactiveShellInit =
+  ''
+    # Start tmux
+    if [ -n "$TMUX" ]; then
+      # set correct terminal
+      if test -n "$STY"; then
+        export TERM=screen-256color
+      else
+        export TERM=tmux-256color
+      end
+    else
+      # only if we set USE_TMUX
+      if [ -n "$USE_TMUX" ]; then
+        start tmux
+        tmux -u attach || tmux -u new
+      end
+    end
+
+    # install fisher
+    if not functions -q fisher
+      set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+      curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+      fish -c fisher
+    end
+
+    # check if we have the theme or not
+    if test -e ~/.config/fish/functions/fish_prompt.fish
+      # it does
+    else
+      fisher add matchai/spacefish
+    end
+
+    # makes lorri/direnv work
+    eval (direnv hook fish)
+
+    # no greeting pls
+    function fish_greeting
+    end
+
+    # start with neofetch
+    clear && neofetch
+  '';
 
   security.sudo.wheelNeedsPassword = false;
 
