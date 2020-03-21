@@ -17,6 +17,7 @@
 
   time.timeZone = "America/Chicago";
 
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     wget
     vim
@@ -39,8 +40,9 @@
     #winetricks
   ];
 
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
+  virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
-  nixpkgs.config.allowUnfree = true;
 
   services.openssh.enable = true;
 
