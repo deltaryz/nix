@@ -38,6 +38,10 @@ in
     terminator
     sunvox
     steam
+    tilda
+    gimp-with-plugins
+    krita
+    vlc
   ];
 
   virtualisation.virtualbox.host.enable = true;
