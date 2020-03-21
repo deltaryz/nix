@@ -61,6 +61,12 @@
       userName = "techniponi";
       userEmail = "wincam97@gmail.com";
     };
+
+    home.file = {
+      ".tmux.conf".source = ./dotfiles/tmux.conf;
+      ".tmux".source = ./dotfiles/tmux;
+      ".vimrc".source = ./dotfiles/vimrc;
+      "bin/getip".source = ./dotfiles/getip;
   };
 
   security.sudo.wheelNeedsPassword = false;

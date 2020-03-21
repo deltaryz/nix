@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# For now I've been manually editing this file to use the machine's correct internet device
+ifconfig wlp3s0 | grep 'inet ' | awk '{print $2}'
