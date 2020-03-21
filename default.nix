@@ -1,7 +1,8 @@
 # Default configuration (applied to all machines)
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, device ? "none", ... }:
 
 {
+
   imports =
     [ 
       (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-19.09.tar.gz}/nixos")
@@ -66,7 +67,12 @@
       ".tmux.conf".source = ./dotfiles/tmux.conf;
       ".tmux".source = ./dotfiles/tmux;
       ".vimrc".source = ./dotfiles/vimrc;
-      "bin/getip".source = ./dotfiles/getip;
+      "bin/getip".text =
+      ''
+        #!/bin/sh
+        ifconfig ${device} | grep 'inet ' | awk '{print $2}'
+      '';
+      "bin/getip".executable = true;
     };
   };
 

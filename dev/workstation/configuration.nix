@@ -13,8 +13,13 @@
   imports =
   [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../default.nix
-    ../../local.nix
-  ];
+      (
+        import ../../default.nix (
+          args
+          // {device = "enp2s0";}
+        )
+      )
+      ../../local.nix
+    ];
 
 }

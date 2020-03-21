@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+args@{ config, pkgs, lib, ... }:
 
 let
   layout = pkgs.writeText "xkb-layout" ''
@@ -13,16 +13,20 @@ let
   '';
 in
 {
+  imports =
+    [ 
+      ./hardware-configuration.nix
+      (
+        import ../../default.nix (
+          args
+          // {device = "wlp3s0";}
+        )
+      )
+      ../../local.nix
+    ];
 
   networking.hostName = "mbp"; # Define your hostname.
   networking.interfaces.wlp3s0.useDHCP = true;
-
-  imports =
-  [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ../../default.nix
-    ../../local.nix
-  ];
 
   # Remap keyboard
   services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xmodmap}/bin/xmodmap ${layout}";

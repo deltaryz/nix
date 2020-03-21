@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+args@{ config, pkgs, lib, ... }:
 
 {
 
@@ -11,8 +11,13 @@
   imports =
   [ # Include the results of the hardware scan.
     ../mbp/hardware-configuration.nix #fix this!!!
-    ../../default.nix
-    ../../remote.nix
-  ];
+      (
+        import ../../default.nix (
+          args
+          // {device = "changethis";} # fix this too
+        )
+      )
+      ../../local.nix
+    ];
 
 }
