@@ -47,6 +47,9 @@
   services.openssh.extraConfig =
   ''
     PubkeyAuthentication yes
+  '';
+  programs.ssh.extraConfig =
+  ''
     StrictHostKeyChecking no 
     UserKnownHostsFile /dev/null
     LogLevel QUIET
