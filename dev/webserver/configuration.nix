@@ -32,13 +32,75 @@ args@{ config, pkgs, lib, ... }:
     config = ''
       (common) {
         gzip
+        log caddy.log
       }
+
       eevee.email {
         import common
 
-        root /srv/test
-        log syslog
+        root /srv/eevee.email
       }
+
+      #cameronseid.com {
+      :9000 {
+        import common
+
+        browse
+        root /srv/cameronseid.com
+      }
+
+      #blog.cameronseid.com {
+      :8070 {
+        import common
+
+        root /srv/blog.cameronseid.com
+        proxy / localhost:8069
+      }
+
+      #horsecock.party {
+      :9001 {
+        import common
+        
+        root /srv/horsecock.party
+      }
+
+      #floof.zone {
+      :9002 {
+        import common
+
+        browse
+        redir /pvfm https://discord.gg/6WCgzHm
+        redir /streamlabs https://streamlabs.com/slobs/d/3177955
+        root /srv/floof.zone
+      }
+
+      #e669.fun {
+      :9003 {
+        import common
+
+        git {
+          repo https://github.com/techniponi/e669
+          interval 300
+        }
+        root /srv/e669.fun
+      }
+
+      #snuggle.monster {
+      :9004 {
+        import common
+
+        git {
+          repo https://github.com/techniponi/tsgame
+          path ..
+          interval 60
+        }
+        root /srv/snuggle.monster
+      }
+
+      #floof.monster{
+      #figure out how to do this
+      #}
+
     '';
   };
 
