@@ -15,6 +15,9 @@ in
   '';
 
   boot.loader.grub.useOSProber = true;
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
   networking.networkmanager.packages = [ pkgs.networkmanager_openvpn ];
