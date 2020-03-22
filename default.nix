@@ -13,6 +13,13 @@
   networking.firewall.allowedTCPPorts = [ 80 443 6969 ];
   networking.firewall.allowedUDPPorts = [ 80 443 6969 ];
 
+  # clean that shit
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 1d";
+  };
+
   services.lorri.enable = true;
 
   time.timeZone = "America/Chicago";
