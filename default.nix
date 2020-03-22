@@ -44,7 +44,7 @@
   virtualisation.docker.enable = true;
 
   services.openssh.enable = true;
-  users.users.delta.openssh.authorizedKeys = ["./secret/authorized_keys"];
+  users.users.delta.openssh.authorizedKeys.keys = ["./secret/authorized_keys"];
   services.openssh.authorizedKeysFiles = ["./secret/authorized_keys"];
   services.openssh.extraConfig =
   ''
