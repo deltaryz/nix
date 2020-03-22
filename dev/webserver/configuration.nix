@@ -10,14 +10,19 @@ args@{ config, pkgs, lib, ... }:
 
   imports =
   [ # Include the results of the hardware scan.
-    ../mbp/hardware-configuration.nix #fix this!!!
+    ./hardware-configuration.nix
       (
         import ../../default.nix (
           args
-          // {device = "changethis";} # fix this too
+          // {device = "ens3";}
         )
       )
       ../../local.nix
     ];
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/vda";
+  networking.interfaces.ens3.useDHCP = true;
 
 }
