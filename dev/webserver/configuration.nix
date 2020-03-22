@@ -25,4 +25,19 @@ args@{ config, pkgs, lib, ... }:
   boot.loader.grub.device = "/dev/vda";
   networking.interfaces.ens3.useDHCP = true;
 
+  services.caddy = {
+    enable = true;
+    email = "me@cameronseid.com";
+    agree = true;
+    config = ''
+      (common) {
+        gzip
+      }
+      :80 {
+        root /srv/test
+        log syslog
+      }
+    '';
+  };
+
 }
