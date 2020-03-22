@@ -18,6 +18,7 @@
   environment.systemPackages = with pkgs; [
     wget
     vim
+    htop
     git
     git-secret
     gnupg
