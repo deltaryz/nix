@@ -41,6 +41,7 @@ args@{ config, pkgs, lib, ... }:
         root /srv/eevee.email
       }
 
+      #cameronseid.com {
       :9000 {
         import common
 
@@ -48,6 +49,7 @@ args@{ config, pkgs, lib, ... }:
         root /srv/cameronseid.com
       }
 
+      #blog.cameronseid.com {
       :8070 {
         import common
 
@@ -55,12 +57,14 @@ args@{ config, pkgs, lib, ... }:
         proxy / localhost:8069
       }
 
+      #horsecock.party {
       :9001 {
         import common
         
         root /srv/horsecock.party
       }
 
+      #floof.zone {
       :9002 {
         import common
 
@@ -70,6 +74,7 @@ args@{ config, pkgs, lib, ... }:
         root /srv/floof.zone
       }
 
+      #e669.fun {
       :9003 {
         import common
 
@@ -80,6 +85,7 @@ args@{ config, pkgs, lib, ... }:
         root /srv/e669.fun
       }
 
+      #snuggle.monster {
       :9004 {
         import common
 
@@ -90,6 +96,10 @@ args@{ config, pkgs, lib, ... }:
         }
         root /srv/snuggle.monster
       }
+
+      #floof.monster{
+      #figure out how to do this
+      #}
 
     '';
   };
