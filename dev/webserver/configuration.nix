@@ -30,39 +30,39 @@ args@{ config, pkgs, lib, ... }:
     email = "me@cameronseid.com";
     agree = true;
     config = ''
-      (common) {
+      eevee.email {
         gzip
         log caddy.log
-      }
-
-      eevee.email {
-        import common
 
         root /srv/eevee.email
       }
 
       :9000 {
-        import common
+        gzip
+        log caddy.log
 
         browse
         root /srv/cameronseid.com
       }
 
       :8070 {
-        import common
+        gzip
+        log caddy.log
 
         root /srv/blog.cameronseid.com
         proxy / localhost:8069
       }
 
       :9001 {
-        import common
+        gzip
+        log caddy.log
         
         root /srv/horsecock.party
       }
 
       :9002 {
-        import common
+        gzip
+        log caddy.log
 
         browse
         redir /pvfm https://discord.gg/6WCgzHm
@@ -71,7 +71,8 @@ args@{ config, pkgs, lib, ... }:
       }
 
       :9003 {
-        import common
+        gzip
+        log caddy.log
 
         git {
           repo https://github.com/techniponi/e669
@@ -81,7 +82,8 @@ args@{ config, pkgs, lib, ... }:
       }
 
       :9004 {
-        import common
+        gzip
+        log caddy.log
 
         git {
           repo https://github.com/techniponi/tsgame
