@@ -9,7 +9,9 @@
     ];
 
   networking.useDHCP = false;
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 80 443 6969 ];
+  networking.firewall.allowedUDPPorts = [ 80 443 6969 ];
 
   services.lorri.enable = true;
 

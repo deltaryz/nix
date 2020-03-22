@@ -30,8 +30,12 @@ args@{ config, pkgs, lib, ... }:
     email = "me@cameronseid.com";
     agree = true;
     config = ''
-      eevee.email {
+      (common) {
         gzip
+      }
+      eevee.email {
+        import common
+
         root /srv/test
         log syslog
       }
