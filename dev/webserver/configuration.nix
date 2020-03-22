@@ -44,6 +44,6 @@ args@{ config, pkgs, lib, ... }:
 
   systemd.services.caddy = {
     user = "root";
-  }
+  };
 
 }
