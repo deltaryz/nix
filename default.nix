@@ -9,6 +9,7 @@
     ];
 
   networking.useDHCP = false;
+  networking.firewall.enable = false;
 
   services.lorri.enable = true;
 
