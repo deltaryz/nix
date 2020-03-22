@@ -9,9 +9,9 @@
     ];
 
   networking.useDHCP = false;
-  networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 80 443 6969 ];
-  networking.firewall.allowedUDPPorts = [ 80 443 6969 ];
+  networking.firewall.enable = false;
+  #networking.firewall.allowedTCPPorts = [ 80 443 6969 ];
+  #networking.firewall.allowedUDPPorts = [ 80 443 6969 ];
 
   # clean that shit
   nix.gc = {
@@ -55,6 +55,7 @@
   virtualisation.docker.enable = true;
 
   services.openssh.enable = true;
+  programs.mosh.enable = true;
   services.openssh.extraConfig =
   ''
     PubkeyAuthentication yes
