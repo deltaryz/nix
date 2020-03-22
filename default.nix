@@ -44,12 +44,9 @@
   virtualisation.docker.enable = true;
 
   services.openssh.enable = true;
-  users.users.delta.openssh.authorizedKeys.keys = ["./secret/authorized_keys"];
-  services.openssh.authorizedKeysFiles = ["./secret/authorized_keys"];
   services.openssh.extraConfig =
   ''
     PubkeyAuthentication yes
-    RSAAuthentication yes
   '';
   #services.openssh.passwordAuthentication = false;
 
@@ -59,6 +56,7 @@
     extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
     password = "password"; # don't forget to change this!
+    openssh.authorizedKeys.keys = [ (builtins.readFile ./secret/id_ed25519.pub) ];
   };
 
   home-manager.users.delta = {
