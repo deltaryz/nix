@@ -17,7 +17,7 @@ args@{ config, pkgs, lib, ... }:
           // {device = "ens3";}
         )
       )
-      ../../local.nix
+      ../../remote.nix
     ];
 
   boot.loader.grub.enable = true;
