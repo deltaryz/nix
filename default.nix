@@ -51,7 +51,7 @@
     PubkeyAuthentication yes
     RSAAuthentication yes
   '';
-  services.openssh.passwordAuthentication = false;
+  #services.openssh.passwordAuthentication = false;
 
   # Don't forget to set a password with ‘passwd’.
   users.users.delta = {
