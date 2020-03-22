@@ -42,7 +42,7 @@ args@{ config, pkgs, lib, ... }:
     '';
   };
 
-  systemd.services.caddy = {
+  systemd.services.caddy.serviceConfig = {
     user = "root";
   };
 
