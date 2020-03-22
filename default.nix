@@ -47,6 +47,9 @@
   services.openssh.extraConfig =
   ''
     PubkeyAuthentication yes
+    StrictHostKeyChecking no 
+    UserKnownHostsFile /dev/null
+    LogLevel QUIET
   '';
   #services.openssh.passwordAuthentication = false;
 
