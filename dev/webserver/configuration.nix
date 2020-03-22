@@ -78,10 +78,10 @@ args@{ config, pkgs, lib, ... }:
       :9003 {
         import common
 
-        git {
-          repo https://github.com/techniponi/e669
-          interval 300
-        }
+        #git {
+        #  repo https://github.com/techniponi/e669
+        #  interval 300
+        #}
         root /srv/e669.fun
       }
 
@@ -89,11 +89,11 @@ args@{ config, pkgs, lib, ... }:
       :9004 {
         import common
 
-        git {
-          repo https://github.com/techniponi/tsgame
-          path ..
-          interval 60
-        }
+        #git {
+        #  repo https://github.com/techniponi/tsgame
+        #  path ..
+        #  interval 60
+        #}
         root /srv/snuggle.monster
       }
 
