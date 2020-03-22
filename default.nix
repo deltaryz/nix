@@ -44,6 +44,8 @@
   virtualisation.docker.enable = true;
 
   services.openssh.enable = true;
+  services.openssh.authorizedKeysFiles = ["./secret/authorized_keys"];
+  #services.openssh.passwordAuthentication = false;
 
   # Don't forget to set a password with ‘passwd’.
   users.users.delta = {
