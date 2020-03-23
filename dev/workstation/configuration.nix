@@ -27,7 +27,14 @@ args@{ config, pkgs, lib, ... }:
     device = "/home/delta";
     options = [ "bind" ];
   };
+  # plex share
+    services.plex = {
+      dataDir = "/home/delta/plex";
+      user = "delta";
+      enable = true;
+  };
   services.nfs.server.enable = true;
+  # allow mbp
   services.nfs.server.exports = ''
     /home/delta 192.168.1.4(rw,nohide,insecure,no_subtree_check)
   '';
