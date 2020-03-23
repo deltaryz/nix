@@ -30,7 +30,7 @@ in
 
   # mount desktop's nfs share
   fileSystems."/mnt/workstation" = {
-    device = "192.168.1.5:/delta";
+    device = "192.168.1.5:/home/delta";
     fsType = "nfs";
     options = ["x-systemd.automount" "noauto"];
   };

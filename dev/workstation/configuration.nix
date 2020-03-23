@@ -29,6 +29,6 @@ args@{ config, pkgs, lib, ... }:
   };
   services.nfs.server.enable = true;
   services.nfs.server.exports = ''
-    /home/delta 0.0.0.0/0(rw,nohide,insecure,no_subtree_check)
+    /home/delta 192.168.1.4(rw,nohide,insecure,no_subtree_check)
   '';
 }
