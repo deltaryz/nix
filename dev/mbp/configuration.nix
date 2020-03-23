@@ -33,7 +33,7 @@ in
     device = "192.168.1.5:/delta";
     fsType = "nfs";
     options = ["x-systemd.automount" "noauto"];
-  }
+  };
 
   # Remap keyboard
   services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xmodmap}/bin/xmodmap ${layout}";
