@@ -14,7 +14,7 @@ args@{ config, pkgs, lib, ... }:
       (
         import ../../default.nix (
           args
-          // {device = "ens3";}
+          // {device = "ens3"; hostname = "webserver"}
         )
       )
       ../../remote.nix

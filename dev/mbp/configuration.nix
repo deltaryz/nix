@@ -19,7 +19,7 @@ in
       (
         import ../../default.nix (
           args
-          // {device = "wlp3s0";}
+          // {device = "wlp3s0"; hostname = "mbp"}
         )
       )
       ../../local.nix

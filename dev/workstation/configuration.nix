@@ -16,7 +16,7 @@ args@{ config, pkgs, lib, ... }:
       (
         import ../../default.nix (
           args
-          // {device = "enp2s0";}
+          // {device = "enp2s0"; hostname = "workstation";}
         )
       )
       ../../local.nix
