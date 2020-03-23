@@ -16,10 +16,19 @@ args@{ config, pkgs, lib, ... }:
       (
         import ../../default.nix (
           args
-          // {device = "enp2s0"; hostname = "workstation";}
+          // {device = "enp2s0";}
         )
       )
       ../../local.nix
     ];
 
+  # nfs share
+  fileSystems."/home/delta" = {
+    device = "/home/delta";
+    options = [ "bind" ];
+  };
+  services.nfs.server.enable = true;
+  services.nfs.server.exports = ''
+    /home/delta 0.0.0.0/0(rw,nohide,insecure,no_subtree_check)
+  '';
 }

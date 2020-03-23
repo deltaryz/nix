@@ -19,7 +19,7 @@ in
       (
         import ../../default.nix (
           args
-          // {device = "wlp3s0"; hostname = "mbp";}
+          // {device = "wlp3s0";}
         )
       )
       ../../local.nix
@@ -27,6 +27,13 @@ in
 
   networking.hostName = "mbp"; # Define your hostname.
   networking.interfaces.wlp3s0.useDHCP = true;
+
+  # mount desktop's nfs share
+  fileSystems."/mnt/workstation" = {
+    device = "192.168.1.5:/delta";
+    fsType = "nfs";
+    options = ["x-systemd.automount" "noauto"];
+  }
 
   # Remap keyboard
   services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xmodmap}/bin/xmodmap ${layout}";

@@ -1,5 +1,5 @@
 # Default configuration (applied to all machines)
-{ pkgs, lib, device ? "none", hostname ? "nix", ... }:
+{ pkgs, lib, device ? "none", ... }:
 
 {
 
@@ -46,12 +46,9 @@
     cmake
     direnv
     unzip
-    lxqt.lxqt-policykit
     #wine
     #winetricks
   ];
-
-  services.gvfs.enable = true;
 
   boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
   virtualisation.libvirtd.enable = true;
@@ -147,34 +144,6 @@
     # start with neofetch
     clear && neofetch
   '';
-
-  services.samba = {
-    enable = true;
-    securityType = "user";
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = ${hostname}
-      netbios name = ${hostname}
-      security = user 
-      #use sendfile = yes
-      #max protocol = smb2
-      hosts allow = 192.168.0  localhost
-      hosts deny = 0.0.0.0/0
-      guest account = nobody
-      map to guest = bad user
-    '';
-    shares = {
-      delta = {
-        path = "/home/delta";
-        browseable = "yes";
-        "read only" = "no";
-        "guest ok" = "no";
-        "create mask" = "0644";
-        "directory mask" = "0755";
-        "force user" = "delta";
-      };
-    };
-  };
 
   security.sudo.wheelNeedsPassword = false;
 
