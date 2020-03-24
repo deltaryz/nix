@@ -22,16 +22,16 @@ args@{ config, pkgs, lib, ... }:
       ../../local.nix
     ];
 
+  # jellyfin
+  services.jellyfin = {
+    enable = true;
+    user = "delta";
+  };
+
   # nfs share
   fileSystems."/home/delta" = {
     device = "/home/delta";
     options = [ "bind" ];
-  };
-  # plex share
-    services.plex = {
-      dataDir = "/home/delta/plex";
-      user = "delta";
-      enable = true;
   };
   services.nfs.server.enable = true;
   # allow mbp
