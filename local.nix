@@ -34,7 +34,7 @@ in
 
   environment.systemPackages = with pkgs; [
     discord
-    firefox-devedition-bin
+    firefox
     vscode
     maim
     xclip
@@ -45,6 +45,8 @@ in
     gimp-with-plugins
     krita
     vlc
+    nomacs
+    qbittorrent
   ];
 
   virtualisation.virtualbox.host.enable = true;
