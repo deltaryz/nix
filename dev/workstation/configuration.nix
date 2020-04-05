@@ -22,6 +22,11 @@ args@{ config, pkgs, lib, ... }:
       ../../local.nix
     ];
 
+  # synergy
+  services.synergy.client.enable = true;
+  services.synergy.client.screenName = "workstation";
+  services.synergy.client.serverAddress = "192.168.1.3";
+
   # jellyfin
   services.jellyfin = {
     enable = true;
