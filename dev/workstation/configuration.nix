@@ -22,6 +22,13 @@ args@{ config, pkgs, lib, ... }:
       ../../local.nix
     ];
 
+  # autologin
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    autoLogin.enable = true;
+    autoLogin.user = "delta";
+  };
+
   # synergy
   services.synergy.client.enable = true;
   services.synergy.client.screenName = "workstation";
@@ -43,4 +50,29 @@ args@{ config, pkgs, lib, ... }:
   services.nfs.server.exports = ''
     /home/delta 192.168.1.4(rw,nohide,insecure,no_subtree_check)
   '';
+
+  # samba
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    extraConfig = ''
+      workgroup = WORKGROUP
+      server string = workstation
+      netbios name = workstation
+      security = user
+      guest account = nobody
+      map to guest = bad user
+    '';
+    shares = {
+      ssd = {
+        path = "/ssd";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "delta";
+      }
+    }
+  }
 }
