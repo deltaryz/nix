@@ -60,15 +60,14 @@ args@{ config, pkgs, lib, ... }:
       server string = workstation
       netbios name = workstation
       security = user
-      guest account = nobody
-      map to guest = bad user
+      guest account = delta
     '';
     shares = {
       ssd = {
         path = "/ssd";
         browseable = "yes";
         "read only" = "no";
-        "guest ok" = "no";
+        "guest ok" = "yes";
         "create mask" = "0644";
         "directory mask" = "0755";
         "force user" = "delta";
